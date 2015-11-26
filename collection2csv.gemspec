@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["ethiraj"]
   spec.email         = ["ethirajsrinivasan@gmail.com"]
 
-  spec.summary       = "Download collection as csv"
-  spec.description   = "Download collection as csv"
+  spec.summary       = "Download ActiveRecord collection as csv"
+  spec.description   = "Download ActiveRecord collection as csv"
   spec.homepage      = "https://github.com/ethirajsrinivasan/collection2csv"
   spec.license       = "MIT"
 
@@ -26,6 +26,9 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+  spec.required_ruby_version = '>= 1.9.3'
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rspec"
+
 end
