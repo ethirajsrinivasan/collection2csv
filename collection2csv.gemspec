@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["ethiraj"]
   spec.email         = ["ethirajsrinivasan@gmail.com"]
 
-  spec.summary       = "Download collection as csv"
-  spec.description   = "Download collection as csv"
+  spec.summary       = "Download ActiveRecord collection as csv"
+  spec.description   = "Download ActiveRecord collection as csv"
   spec.homepage      = "https://github.com/ethirajsrinivasan/collection2csv"
   spec.license       = "MIT"
 
