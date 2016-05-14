@@ -14,6 +14,8 @@ class Collection2csvController < ApplicationController
     end
   end
 
+  private
+
   def to_csv(collection,column_names)
     CSV.generate do |csv|
       csv << column_names.map(&:humanize)
