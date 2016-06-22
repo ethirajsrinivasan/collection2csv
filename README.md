@@ -26,14 +26,19 @@ Or install it yourself as:
 
 Use the collection_download helper like any other regular tag helper :
 
-	<%= collection_download(@collection) %>
+  	<%= collection_download(@activerecord_collection) %>
 
 In order to select a particular columns use column names as follows
 
-	<%= collection_download(@collection,'column_name1,column_name2') %>
+    <%= collection_download(@activerecord_collection, {columns: ['id','name']}) %>
 
-Note: @collection is a ActiveRecord Collection
+Download link text can be provided as follows
 
+    <%= collection_download(@activerecord_collection, {link_text: 'export'}) %>
+
+Supports Associations
+
+    <%= collection_download(@activerecord_collection, {columns: ['id','name'], associations: {association_name: ['id','name']}}) %>
 
 ## Contributing
 
@@ -44,3 +49,6 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/ethira
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
+## TODO
+
+Specs to be written
