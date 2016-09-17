@@ -62,13 +62,9 @@ module Collection2csv
       end
     end
 
-    def get_filename
-      "#{@klass}_#{DateTime.now.to_formatted_s(:db)}.csv"
-    end
-
     def validate_association_column_names
       @associations.each do |association_key , association_value|
-        false_columns = association_value - @association_class_names[association_key].constantize.column_names
+        false_columns = association_value - @association_class_names[association_key.to_s].constantize.column_names
         raise_error(false_columns,'column',association_key) unless false_columns.empty?
       end
     end

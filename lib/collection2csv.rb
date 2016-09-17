@@ -1,4 +1,5 @@
 require "collection2csv/version"
+require "collection2csv/convertor"
 
 module Collection2csv
   class Engine < Rails::Engine

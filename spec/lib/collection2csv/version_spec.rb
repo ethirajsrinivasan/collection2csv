@@ -1,4 +1,5 @@
 require 'spec_helper'
+# require 'rails_helper'
 
 describe Collection2csv do
   it 'has a version number' do
