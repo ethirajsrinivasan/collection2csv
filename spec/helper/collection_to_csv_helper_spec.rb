@@ -6,7 +6,7 @@ describe CollectionToCsvHelper,type: :helper do
     User.create(name: "ethiraj")
     User.create(name: "srinivasan")
   end
-  let(:collection) { collection = User.all }
+  let(:collection) { User.all }
   it "should form url" do
     expect(collection_download(collection)).to eq "<a href=\"/collection2csv.csv?ids%5B%5D=1&amp;ids%5B%5D=2&amp;klass=User\">Download</a>"
   end
@@ -23,9 +23,9 @@ describe CollectionToCsvHelper,type: :helper do
     expect{collection_download([])}.to raise_error(RuntimeError,"[] is not a ActiveRecord collection")
   end
   it "should send column names as params" do
-    expect(collection_download(collection,{columns: ["name"]})).to include *["column_names","name"]
+    expect(collection_download(collection,{columns: ["name"]})).to include("column_names","name")
   end
   it "should send association as params" do
-    expect(collection_download(collection,{associations: {association_name: ['id','name']}})).to include *["associations", "association_name", "id", "name"]
+    expect(collection_download(collection,{associations: {association_name: ['id','name']}})).to include("associations", "association_name", "id", "name")
   end
 end
