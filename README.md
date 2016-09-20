@@ -26,19 +26,27 @@ Or install it yourself as:
 
 Use the collection_download helper like any other regular tag helper :
 
-  	<%= collection_download(@activerecord_collection) %>
+    <%= collection_download(@activerecord_collection) %>
+
+    eg: <%= collection_download(@users) %>
 
 In order to select a particular columns use column names as follows
 
     <%= collection_download(@activerecord_collection, {columns: ['id','name']}) %>
 
+    eg: <%= collection_download(@users, {columns: ['id','name']}) %>
+
 Download link text can be provided as follows
 
     <%= collection_download(@activerecord_collection, {link_text: 'export'}) %>
 
+    eg: <%= collection_download(@users, {link_text: 'export'}) %>
+
 Supports Associations
 
     <%= collection_download(@activerecord_collection, {columns: ['id','name'], associations: {association_name: ['id','name']}}) %>
+
+    eg: <%= collection_download(@users, {columns: ['id','name'], associations: {book: ['name', 'author']}}) %>
 
 ## Contributing
 
