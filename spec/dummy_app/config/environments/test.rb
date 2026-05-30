@@ -20,4 +20,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
   config.secret_key_base = "test_secret_key_base" * 4
+
+  config.assets.compile = true
+  config.assets.digest = false
 end
