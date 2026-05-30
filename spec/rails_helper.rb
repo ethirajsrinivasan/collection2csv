@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "logger"
+
 ENV["RAILS_ENV"] = "test"
 
 require File.expand_path("dummy_app/config/environment", __dir__)
