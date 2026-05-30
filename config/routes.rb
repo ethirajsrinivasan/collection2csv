@@ -1,4 +1,5 @@
-# ENGINE/config/routes.rb
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  get "/collection2csv" => "collection2csv#convert"
+  get "/collection2csv(.:format)" => "collection2csv#convert", as: :collection2csv, defaults: { format: "csv" }
 end

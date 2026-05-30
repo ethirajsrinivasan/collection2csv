@@ -1,10 +1,14 @@
 # Collection2csv
 
-[![Build Status](https://travis-ci.org/ethirajsrinivasan/collection2csv.svg?branch=master)](https://travis-ci.org/ethirajsrinivasan/collection2csv)
-[![Code Climate](https://codeclimate.com/github/ethirajsrinivasan/collection2csv/badges/gpa.svg)](https://codeclimate.com/github/ethirajsrinivasan/collection2csv)
-[![security](https://hakiri.io/github/ethirajsrinivasan/collection2csv/master.svg)](https://hakiri.io/github/ethirajsrinivasan/collection2csv/master)
+[![CI](https://github.com/ethirajsrinivasan/collection2csv/actions/workflows/ci.yml/badge.svg)](https://github.com/ethirajsrinivasan/collection2csv/actions/workflows/ci.yml)
+[![Gem Version](https://badge.fury.io/rb/collection2csv.svg)](https://badge.fury.io/rb/collection2csv)
 
-Collection2csv gem allows you to export a ActiveRecord collection of model objects to csv
+Export ActiveRecord collections to CSV via a Rails helper and download endpoint.
+
+## Requirements
+
+- Ruby >= 3.0
+- Rails >= 6.0
 
 ## Installation
 
@@ -16,43 +20,50 @@ gem 'collection2csv'
 
 And then execute:
 
-    $ bundle install
+```bash
+bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install collection2csv
+```bash
+gem install collection2csv
+```
 
 ## Usage
 
-Use the collection_download helper like any other regular tag helper :
+Use the `collection_download` helper:
 
-    <%= collection_download(@activerecord_collection) %>
+```erb
+<%= collection_download(@users) %>
+```
 
-    eg: <%= collection_download(@users) %>
+Select specific columns:
 
-In order to select a particular columns use column names as follows
+```erb
+<%= collection_download(@users, columns: ['id', 'name']) %>
+```
 
-    <%= collection_download(@activerecord_collection, {columns: ['id','name']}) %>
+Custom link text:
 
-    eg: <%= collection_download(@users, {columns: ['id','name']}) %>
+```erb
+<%= collection_download(@users, link_text: 'Download CSV') %>
+```
 
-Download link text can be provided as follows
+Include associations:
 
-    <%= collection_download(@activerecord_collection, {link_text: 'export'}) %>
+```erb
+<%= collection_download(@users, associations: { book: ['id', 'name'] }) %>
+```
 
-    eg: <%= collection_download(@users, {link_text: 'export'}) %>
+## Upgrading from 0.x to 1.0
 
-Supports Associations
-
-    <%= collection_download(@activerecord_collection, {columns: ['id','name'], associations: {association_name: ['id','name']}}) %>
-
-    eg: <%= collection_download(@users, {columns: ['id','name'], associations: {book: ['name', 'author']}}) %>
+Version 1.0.0 requires Ruby 3.0+ and Rails 6.0+. See [UPGRADE_GUIDE.md](UPGRADE_GUIDE.md).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/ethirajsrinivasan/collection2csv.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/ethirajsrinivasan/collection2csv. Contributors are expected to adhere to the [Contributor Covenant](CODE_OF_CONDUCT.md) code of conduct.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the [MIT License](LICENSE.txt).

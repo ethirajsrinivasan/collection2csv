@@ -1,4 +1,11 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-# Specify your gem's dependencies in collection2csv.gemspec
+source "https://rubygems.org"
+
 gemspec
+
+if (rails_version = ENV.fetch("RAILS_VERSION", nil))
+  gem "rails", "~> #{rails_version}.0"
+else
+  gem "rails", "~> 7.1.0"
+end

@@ -1,41 +1,34 @@
-# Configure Rails Envinronment
-ENV['RAILS_ENV'] = 'test'
-CI_ORM = (ENV['CI_ORM'] || :active_record).to_sym
-CI_TARGET_ORMS = [:active_record].freeze
+# frozen_string_literal: true
 
-require File.expand_path('../dummy_app/config/environment', __FILE__)
+ENV["RAILS_ENV"] = "test"
 
-require 'rspec/rails'
-require 'database_cleaner'
-# require "orm/#{CI_ORM}"
+require File.expand_path("dummy_app/config/environment", __dir__)
 
-Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
+require "rspec/rails"
+require "database_cleaner/active_record"
 
-Rails.backtrace_cleaner.remove_silencers!
+Dir[File.expand_path("support/**/*.rb", __dir__)].each { |f| require f }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
 
-  config.include RSpec::Matchers
   config.include ConvertorHelper
 
-  config.before do |example|
-    DatabaseCleaner.strategy = (CI_ORM == :mongoid || example.metadata[:js]) ? :truncation : :transaction
+  config.before(:suite) do
+    unless ActiveRecord::Base.connection.table_exists?(:users)
+      ActiveRecord::Schema.verbose = false
+      load File.expand_path("dummy_app/db/schema.rb", __dir__)
+    end
+  end
 
+  config.before do
+    DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
   end
 
-  config.after(:each) do
+  config.after do
     DatabaseCleaner.clean
-  end
-
-  CI_TARGET_ORMS.each do |orm|
-    if orm == CI_ORM
-      config.filter_run_excluding "skip_#{orm}".to_sym => true
-    else
-      config.filter_run_excluding orm => true
-    end
   end
 end
