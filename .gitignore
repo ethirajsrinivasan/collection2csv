@@ -39,3 +39,5 @@
 
 ## Logs
 npm-debug.log
+*.sqlite3-shm
+*.sqlite3-wal
