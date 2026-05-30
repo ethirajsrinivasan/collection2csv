@@ -8,10 +8,10 @@ rails_version = ENV.fetch("RAILS_VERSION", "8.1")
 
 gem "rails", "~> #{rails_version}.0"
 
-if rails_version.to_f < 7.1
-  gem "sqlite3", "~> 1.4"
-else
+if rails_version.to_f >= 7.2
   gem "sqlite3", ">= 2.1"
+else
+  gem "sqlite3", "~> 1.4"
 end
 
 if rails_version == "6.0"
